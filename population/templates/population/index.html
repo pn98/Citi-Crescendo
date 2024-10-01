@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Population Data</title>
+</head>
+<body>
+    <h1>Live World Population</h1>
+    <div id="population-data"></div>
+    <script>
+        fetch('/api/cities/')
+        .then(response => response.json())
+        .then(data => {
+            const populationDiv = document.getElementById('population-data');
+            data.forEach(city => {
+                const p = document.createElement('p');
+                p.innerHTML = `City: ${city.name}, Population: ${city.population}`;
+                populationDiv.appendChild(p);
+            });
+        });
+    </script>
+</body>
+</html>
